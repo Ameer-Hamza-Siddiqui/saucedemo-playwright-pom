@@ -6,10 +6,3 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
-/npx playwright test tests/Login.spec.js --headed
-/npx playwright test tests/AddToCart.spec.js --headed
-/npx playwright test tests/Checkout.spec.js --headed
-/npx playwright test tests/Logout.spec.js --headed
-/npx playwright test tests/Home.spec.js --headed
-/npx playwright test tests/Smoke.spec.js --headed
-/npx playwright test smoke/Smoke.spec.js --headed
