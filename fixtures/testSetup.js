@@ -3,7 +3,7 @@
 import { test as base, expect } from '@playwright/test';
 
 
-import BasePage from '../Pages/BasePage.js';
+import BasePage from '../pages/BasePage.js';
 
 
 import {
