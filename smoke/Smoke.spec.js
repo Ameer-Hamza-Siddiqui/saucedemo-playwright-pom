@@ -6,10 +6,10 @@ import {
 } from '../fixtures/testSetup.js';
 
 import LoginPage from '../pages/LoginPage.js';
-import HomePage from '../Pages/HomePage.js';
-import AddToCart from '../Pages/AddToCart.js';
-import Checkout from '../Pages/Checkout.js';
-import Logout from '../Pages/Logout.js';
+import HomePage from '../pages/HomePage.js';
+import AddToCart from '../pages/AddToCart.js';
+import Checkout from '../pages/Checkout.js';
+import Logout from '../pages/Logout.js';
 
 import LoginData from '../testdata/LogintestData.json';
 import HomeData from '../testdata/HomePage.json';

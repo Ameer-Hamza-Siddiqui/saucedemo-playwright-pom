@@ -6,7 +6,7 @@ import {
 } from '../fixtures/testSetup.js';
 
 import LoginPage from '../pages/LoginPage.js';
-import AddToCart from '../Pages/AddToCart.js';
+import AddToCart from '../pages/AddToCart.js';
 
 import LoginData from '../testdata/LogintestData.json';
 import CartData from '../testdata/AddToCart.json';

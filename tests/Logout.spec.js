@@ -4,7 +4,7 @@ import {
   expect
 } from '../fixtures/testSetup.js';
 
-import LoginPage from '../Pages/LoginPage.js';
+import LoginPage from '../pages/LoginPage.js';
 import Logout from '../pages/Logout.js';
 
 import LogoutData from '../testdata/logout.json';
