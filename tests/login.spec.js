@@ -1,55 +1,131 @@
-import { test, expect } from '@playwright/test';
+// tests/Login.spec.js
 
-import LoginPage from '../Pages/LoginPage.js';
+import {
+  test,
+  expect
+} from '../fixtures/testSetup.js';
+
+import LoginPage from '../pages/LoginPage.js';
 import HomePage from '../Pages/HomePage.js';
 
 import LoginData from '../testdata/LogintestData.json';
 
 
-test('TC01 - Valid Login', async ({ page }) => {
+// =====================================================
+// TC01 - VALID LOGIN
+// =====================================================
+
+test('TC01 - Valid Login', async ({
+  page
+}, testInfo) => {
 
   const login = new LoginPage(page);
+
   const home = new HomePage(page);
 
-  await login.goto();
 
-  await login.login(
-    LoginData.validUser.username,
-    LoginData.validUser.password
+  await test.step(
+    'STEP 1: Login with Valid User',
+    async () => {
+
+      await login.login(
+        LoginData.validUser.username,
+        LoginData.validUser.password,
+        testInfo
+      );
+
+    }
   );
 
-  await expect(home.productsTitle)
-    .toHaveText('Products');
+
+  await test.step(
+    'STEP 2: Verify Products Page',
+    async () => {
+
+      await expect(home.productsTitle)
+        .toHaveText('Products');
+
+    }
+  );
+
 });
 
 
-test('TC02 - Locked Out User', async ({ page }) => {
+// =====================================================
+// TC02 - LOCKED USER
+// =====================================================
+
+test('TC02 - Locked Out User', async ({
+  page
+}, testInfo) => {
 
   const login = new LoginPage(page);
 
-  await login.goto();
 
-  await login.login(
-    LoginData.lockedUser.username,
-    LoginData.lockedUser.password
+  await test.step(
+    'STEP 1: Login with Locked Out User',
+    async () => {
+
+      await login.login(
+        LoginData.lockedUser.username,
+        LoginData.lockedUser.password,
+        testInfo
+      );
+
+    }
   );
 
-  await expect(login.errorMessage)
-    .toContainText('Sorry, this user has been locked out');
+
+  await test.step(
+    'STEP 2: Verify Error Message',
+    async () => {
+
+      await expect(login.errorMessage)
+        .toContainText(
+          'Sorry, this user has been locked out'
+        );
+
+    }
+  );
+
 });
 
 
-test('TC03 - Invalid Login', async ({ page }) => {
+// =====================================================
+// TC03 - INVALID LOGIN
+// =====================================================
+
+test('TC03 - Invalid Login', async ({
+  page
+}, testInfo) => {
 
   const login = new LoginPage(page);
 
-  await login.goto();
 
-  await login.login(
-    LoginData.invalidUser.username,
-    LoginData.invalidUser.password
+  await test.step(
+    'STEP 1: Login with Invalid User',
+    async () => {
+
+      await login.login(
+        LoginData.invalidUser.username,
+        LoginData.invalidUser.password,
+        testInfo
+      );
+
+    }
   );
 
-  await expect(login.errorMessage)
-    .toContainText('Username and password do not match');
+
+  await test.step(
+    'STEP 2: Verify Error Message',
+    async () => {
+
+      await expect(login.errorMessage)
+        .toContainText(
+          'Username and password do not match'
+        );
+
+    }
+  );
+
 });

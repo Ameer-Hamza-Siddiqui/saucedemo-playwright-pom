@@ -1,0 +1,181 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: tests\AddToCart.spec.js >> TC06 - Add Multiple Products
+- Location: tests\AddToCart.spec.js:31:5
+
+# Error details
+
+```
+ReferenceError: expect is not defined
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - button "Open Menu" [ref=e8] [cursor=pointer]
+          - img "Open Menu" [ref=e9]
+        - generic [ref=e10]: Swag Labs
+        - generic [ref=e12]: "3"
+      - generic [ref=e15]:
+        - generic [ref=e16]: Products
+        - generic [ref=e18] [cursor=pointer]:
+          - generic [ref=e19]: Name (A to Z)
+          - combobox [ref=e20]:
+            - option "Name (A to Z)" [selected]
+            - option "Name (Z to A)"
+            - option "Price (low to high)"
+            - option "Price (high to low)"
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - link [ref=e27]:
+          - /url: "#"
+          - img "Sauce Labs Backpack" [ref=e28]
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - link "Sauce Labs Backpack" [ref=e31]:
+              - /url: "#"
+            - generic [ref=e33]: carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.
+          - generic [ref=e34]:
+            - generic [ref=e35]: $29.99
+            - button "Remove" [ref=e36] [cursor=pointer]
+      - generic [ref=e37]:
+        - link [ref=e39]:
+          - /url: "#"
+          - img "Sauce Labs Bike Light" [ref=e40]
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - link "Sauce Labs Bike Light" [ref=e43]:
+              - /url: "#"
+            - generic [ref=e45]: A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.
+          - generic [ref=e46]:
+            - generic [ref=e47]: $9.99
+            - button "Remove" [ref=e48] [cursor=pointer]
+      - generic [ref=e49]:
+        - link [ref=e51]:
+          - /url: "#"
+          - img "Sauce Labs Bolt T-Shirt" [ref=e52]
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - link "Sauce Labs Bolt T-Shirt" [ref=e55]:
+              - /url: "#"
+            - generic [ref=e57]: Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.
+          - generic [ref=e58]:
+            - generic [ref=e59]: $15.99
+            - button "Remove" [ref=e60] [cursor=pointer]
+      - generic [ref=e61]:
+        - link [ref=e63]:
+          - /url: "#"
+          - img "Sauce Labs Fleece Jacket" [ref=e64]
+        - generic [ref=e65]:
+          - generic [ref=e66]:
+            - link "Sauce Labs Fleece Jacket" [ref=e67]:
+              - /url: "#"
+            - generic [ref=e69]: It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.
+          - generic [ref=e70]:
+            - generic [ref=e71]: $49.99
+            - button "Add to cart" [ref=e72] [cursor=pointer]
+      - generic [ref=e73]:
+        - link [ref=e75]:
+          - /url: "#"
+          - img "Sauce Labs Onesie" [ref=e76]
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - link "Sauce Labs Onesie" [ref=e79]:
+              - /url: "#"
+            - generic [ref=e81]: Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.
+          - generic [ref=e82]:
+            - generic [ref=e83]: $7.99
+            - button "Add to cart" [ref=e84] [cursor=pointer]
+      - generic [ref=e85]:
+        - link [ref=e87]:
+          - /url: "#"
+          - img "Test.allTheThings() T-Shirt (Red)" [ref=e88]
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - link "Test.allTheThings() T-Shirt (Red)" [ref=e91]:
+              - /url: "#"
+            - generic [ref=e93]: This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton.
+          - generic [ref=e94]:
+            - generic [ref=e95]: $15.99
+            - button "Add to cart" [ref=e96] [cursor=pointer]
+  - contentinfo [ref=e97]:
+    - list [ref=e98]:
+      - listitem [ref=e99]:
+        - link "Twitter" [ref=e100]:
+          - /url: https://twitter.com/saucelabs
+      - listitem [ref=e101]:
+        - link "Facebook" [ref=e102]:
+          - /url: https://www.facebook.com/saucelabs
+      - listitem [ref=e103]:
+        - link "LinkedIn" [ref=e104]:
+          - /url: https://www.linkedin.com/company/sauce-labs/
+    - generic [ref=e105]: © 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy
+```
+
+# Test source
+
+```ts
+  1  | 
+  2  | import { test } from "@playwright/test"
+  3  | import LoginPage from '../Pages/LoginPage.js';
+  4  | import AddToCart from '../Pages/AddtoCart.js';
+  5  | 
+  6  | import LoginData from '../testdata/LogintestData.json';
+  7  | import CartData from '../testdata/AddToCart.json';
+  8  | 
+  9  | 
+  10 | test('TC05 - Add Single Product', async ({ page }) => {
+  11 | 
+  12 |   const login = new LoginPage(page);
+  13 |   const cart = new AddToCart(page);
+  14 | 
+  15 |   await login.goto();
+  16 | 
+  17 |   await login.login(
+  18 |     LoginData.validUser.username,
+  19 |     LoginData.validUser.password
+  20 |   );
+  21 | 
+  22 |   await cart.addProduct(
+  23 |     CartData.singleProduct
+  24 |   );
+  25 | 
+  26 |   await expect(cart.cartBadge)
+  27 |     .toHaveText('1');
+  28 | });
+  29 | 
+  30 | 
+  31 | test('TC06 - Add Multiple Products', async ({ page }) => {
+  32 | 
+  33 |   const login = new LoginPage(page);
+  34 |   const cart = new AddToCart(page);
+  35 | 
+  36 |   await login.goto();
+  37 | 
+  38 |   await login.login(
+  39 |     LoginData.validUser.username,
+  40 |     LoginData.validUser.password
+  41 |   );
+  42 | 
+  43 |   await cart.addMultipleProducts(
+  44 |     CartData.multipleProducts
+  45 |   );
+  46 | 
+> 47 |   await expect(cart.cartBadge)
+     |   ^ ReferenceError: expect is not defined
+  48 |     .toHaveText(
+  49 |       String(CartData.multipleProducts.length)
+  50 |     );
+  51 | });
+```

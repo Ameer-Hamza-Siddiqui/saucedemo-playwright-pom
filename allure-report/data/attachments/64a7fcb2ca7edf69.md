@@ -1,0 +1,164 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: tests\Checkout.spec.js >> TC07 - Complete E2E Purchase Flow
+- Location: tests\Checkout.spec.js:16:5
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for locator('#login-button')
+    - locator resolved to <input type="submit" value="Login" id="login-button" name="login-button" data-test="login-button" class="submit-button btn_action"/>
+  - attempting click action
+    - waiting for element to be visible, enabled and stable
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]: Swag Labs
+  - generic [ref=e5]:
+    - generic [ref=e9]:
+      - textbox "Username" [ref=e11]: standard_user
+      - textbox "Password" [active] [ref=e13]: secret_sauce
+      - button "Login" [ref=e15] [cursor=pointer]
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - heading "Accepted usernames are:" [level=4] [ref=e19]
+        - text: standard_userlocked_out_userproblem_userperformance_glitch_usererror_uservisual_user
+      - generic [ref=e20]:
+        - heading "Password for all users:" [level=4] [ref=e21]
+        - text: secret_sauce
+```
+
+# Test source
+
+```ts
+  1   | // Pages/LoginPage.js
+  2   | 
+  3   | import {
+  4   |   attachStepScreenshot
+  5   | } from '../utils/screenshotUtil.js';
+  6   | 
+  7   | 
+  8   | class LoginPage {
+  9   | 
+  10  |   constructor(page) {
+  11  | 
+  12  |     this.page = page;
+  13  | 
+  14  |     // Locators
+  15  |     this.usernameInput = page.locator('#user-name');
+  16  | 
+  17  |     this.passwordInput = page.locator('#password');
+  18  | 
+  19  |     this.loginButton = page.locator('#login-button');
+  20  | 
+  21  |     this.errorMessage = page.locator('[data-test="error"]');
+  22  | 
+  23  |   }
+  24  | 
+  25  | 
+  26  |   // =====================================================
+  27  |   // ENTER USERNAME
+  28  |   // =====================================================
+  29  | 
+  30  |   async enterUsername(username, testInfo) {
+  31  | 
+  32  |     await this.usernameInput.fill(username);
+  33  | 
+  34  |     await attachStepScreenshot(
+  35  |       this.page,
+  36  |       testInfo,
+  37  |       '01 - After Entering Username'
+  38  |     );
+  39  | 
+  40  |   }
+  41  | 
+  42  | 
+  43  |   // =====================================================
+  44  |   // ENTER PASSWORD
+  45  |   // =====================================================
+  46  | 
+  47  |   async enterPassword(password, testInfo) {
+  48  | 
+  49  |     await this.passwordInput.fill(password);
+  50  | 
+  51  |     await attachStepScreenshot(
+  52  |       this.page,
+  53  |       testInfo,
+  54  |       '02 - After Entering Password'
+  55  |     );
+  56  | 
+  57  |   }
+  58  | 
+  59  | 
+  60  |   // =====================================================
+  61  |   // CLICK LOGIN
+  62  |   // =====================================================
+  63  | 
+  64  |   async clickLogin(testInfo) {
+  65  | 
+> 66  |     await this.loginButton.click();
+      |                            ^ Error: locator.click: Test timeout of 30000ms exceeded.
+  67  | 
+  68  |     await attachStepScreenshot(
+  69  |       this.page,
+  70  |       testInfo,
+  71  |       '03 - After Clicking Login'
+  72  |     );
+  73  | 
+  74  |   }
+  75  | 
+  76  | 
+  77  |   // =====================================================
+  78  |   // LOGIN
+  79  |   // =====================================================
+  80  | 
+  81  |   async login(username, password, testInfo) {
+  82  | 
+  83  |     await this.enterUsername(
+  84  |       username,
+  85  |       testInfo
+  86  |     );
+  87  | 
+  88  |     await this.enterPassword(
+  89  |       password,
+  90  |       testInfo
+  91  |     );
+  92  | 
+  93  |     await this.clickLogin(
+  94  |       testInfo
+  95  |     );
+  96  | 
+  97  |   }
+  98  | 
+  99  | 
+  100 |   // =====================================================
+  101 |   // GET ERROR MESSAGE
+  102 |   // =====================================================
+  103 | 
+  104 |   async getErrorMessage() {
+  105 | 
+  106 |     return await this.errorMessage.textContent();
+  107 | 
+  108 |   }
+  109 | 
+  110 | }
+  111 | 
+  112 | 
+  113 | export default LoginPage;
+```

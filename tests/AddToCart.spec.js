@@ -1,51 +1,124 @@
-import { test, expect } from '@playwright/test';
+// tests/AddToCart.spec.js
 
-import LoginPage from '../Pages/LoginPage.js';
-import AddToCart from '../Pages/AddtoCart.js';
+import {
+  test,
+  expect
+} from '../fixtures/testSetup.js';
+
+import LoginPage from '../pages/LoginPage.js';
+import AddToCart from '../Pages/AddToCart.js';
 
 import LoginData from '../testdata/LogintestData.json';
 import CartData from '../testdata/AddToCart.json';
 
 
-test('TC05 - Add Single Product', async ({ page }) => {
+// =====================================================
+// TC05 - ADD SINGLE PRODUCT
+// =====================================================
 
-  const login = new LoginPage(page);
-  const cart = new AddToCart(page);
+test(
+  'TC05 - Add Single Product',
+  async ({ page }, testInfo) => {
 
-  await login.goto();
+    const login = new LoginPage(page);
 
-  await login.login(
-    LoginData.validUser.username,
-    LoginData.validUser.password
-  );
-
-  await cart.addProduct(
-    CartData.singleProduct
-  );
-
-  await expect(cart.cartBadge)
-    .toHaveText('1');
-});
+    const cart = new AddToCart(page);
 
 
-test('TC06 - Add Multiple Products', async ({ page }) => {
+    await test.step(
+      'STEP 1: Login with Valid User',
+      async () => {
 
-  const login = new LoginPage(page);
-  const cart = new AddToCart(page);
+        await login.login(
+          LoginData.validUser.username,
+          LoginData.validUser.password,
+          testInfo
+        );
 
-  await login.goto();
-
-  await login.login(
-    LoginData.validUser.username,
-    LoginData.validUser.password
-  );
-
-  await cart.addMultipleProducts(
-    CartData.multipleProducts
-  );
-
-  await expect(cart.cartBadge)
-    .toHaveText(
-      String(CartData.multipleProducts.length)
+      }
     );
-});
+
+
+    await test.step(
+      'STEP 2: Add Single Product',
+      async () => {
+
+        await cart.addProduct(
+          CartData.singleProduct,
+          testInfo
+        );
+
+      }
+    );
+
+
+    await test.step(
+      'STEP 3: Verify Cart Badge Count is 1',
+      async () => {
+
+        await expect(cart.cartBadge)
+          .toHaveText('1');
+
+      }
+    );
+
+  }
+);
+
+
+// =====================================================
+// TC06 - ADD MULTIPLE PRODUCTS
+// =====================================================
+
+test(
+  'TC06 - Add Multiple Products',
+  async ({ page }, testInfo) => {
+
+    const login = new LoginPage(page);
+
+    const cart = new AddToCart(page);
+
+
+    await test.step(
+      'STEP 1: Login with Valid User',
+      async () => {
+
+        await login.login(
+          LoginData.validUser.username,
+          LoginData.validUser.password,
+          testInfo
+        );
+
+      }
+    );
+
+
+    await test.step(
+      'STEP 2: Add Multiple Products',
+      async () => {
+
+        await cart.addMultipleProducts(
+          CartData.multipleProducts,
+          testInfo
+        );
+
+      }
+    );
+
+
+    await test.step(
+      'STEP 3: Verify Cart Badge Count',
+      async () => {
+
+        await expect(cart.cartBadge)
+          .toHaveText(
+            String(
+              CartData.multipleProducts.length
+            )
+          );
+
+      }
+    );
+
+  }
+);

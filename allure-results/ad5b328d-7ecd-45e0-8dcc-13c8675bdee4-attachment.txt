@@ -1,0 +1,2 @@
+DELETE STATUS: 200
+DELETE RESPONSE: {"statusCode":200,"data":{},"message":"User account deleted successfully","success":true}

@@ -1,0 +1,2 @@
+USER STATUS: 200
+USER RESPONSE: {"statusCode":200,"data":{"_id":"6a97d4f064716a1fca5589d8","username":"ameer1788335343434","fullname":"Ameer Hamza","createdAt":"2026-09-02T07:49:04.129Z","updatedAt":"2026-09-02T07:49:05.493Z","__v":0},"message":"User fetched successfully","success":true}

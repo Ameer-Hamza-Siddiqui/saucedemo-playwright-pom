@@ -1,34 +1,49 @@
-import { test, expect } from '@playwright/test';
+
+import {
+  test,
+  expect
+} from '../fixtures/testSetup.js';
 
 import LoginPage from '../Pages/LoginPage.js';
-import Logout from '../Pages/logout.js';
+import Logout from '../pages/Logout.js';
 
 import LogoutData from '../testdata/logout.json';
 
-
-test('TC08 - Logout Test', async ({ page }) => {
+test ('TC08 - Logout Test', async ({ page }, testInfo) => {
 
   const login = new LoginPage(page);
   const logout = new Logout(page);
 
+  await test.step(
+    'STEP 1: Login to Application',
+    async () => {
 
-  // Login
+      await login.login(
+        LogoutData.username,
+        LogoutData.password,
+        testInfo
+      );
 
-  await login.goto();
-
-  await login.login(
-    LogoutData.username,
-    LogoutData.password
+    }
   );
 
+  await test.step(
+    'STEP 2: Logout from Application',
+    async () => {
 
-  // Logout
+      await logout.logout(testInfo);
 
-  await logout.logout();
+    }
+  );
 
+  await test.step(
+    'STEP 3: Verify Login Button After Logout',
+    async () => {
 
-  // Verify Login Button
+      await expect(login.loginButton)
+        .toBeVisible();
 
-  await expect(login.loginButton)
-    .toBeVisible();
+    }
+  );
+
 });

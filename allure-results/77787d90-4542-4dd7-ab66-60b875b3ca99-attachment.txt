@@ -1,0 +1,2 @@
+CURRENT USER STATUS: 200
+CURRENT USER RESPONSE: {"statusCode":200,"data":{"_id":"6a97d4f0de39888b9e4afe6d","username":"ameer1788335343453","email":"ameer1788335343453@gmail.com","fullname":"Ameer Hamza","createdAt":"2026-09-02T07:49:04.127Z","updatedAt":"2026-09-02T07:49:05.506Z","__v":0},"message":"Current user fetched successfully","success":true}

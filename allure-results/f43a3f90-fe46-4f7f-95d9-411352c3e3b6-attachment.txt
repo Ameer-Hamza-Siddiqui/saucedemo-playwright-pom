@@ -1,0 +1,20 @@
+LOGIN STATUS: 200
+LOGIN RESPONSE: {
+  statusCode: 200,
+  data: {
+    user: {
+      _id: '6a97d4f0e3185e8a01627e90',
+      username: 'ameer1788335343424',
+      email: 'ameer1788335343424@gmail.com',
+      fullname: 'Ameer Hamza',
+      createdAt: '2026-09-02T07:49:04.146Z',
+      updatedAt: '2026-09-02T07:49:05.543Z',
+      __v: 0
+    },
+    accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTk3ZDRmMGUzMTg1ZThhMDE2MjdlOTAiLCJlbWFpbCI6ImFtZWVyMTc4ODMzNTM0MzQyNEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IkFtZWVyIEhhbXphIiwiaWF0IjoxNzg4MzM1MzQ1LCJleHAiOjE3ODg0MjE3NDV9.AOxMk2nC3TbV7knOe8a3eeFnC_KJnHIZaFKZAGh6HEU',
+    refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTk3ZDRmMGUzMTg1ZThhMDE2MjdlOTAiLCJlbWFpbCI6ImFtZWVyMTc4ODMzNTM0MzQyNEBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IkFtZWVyIEhhbXphIiwiaWF0IjoxNzg4MzM1MzQ1LCJleHAiOjE3ODkxOTkzNDV9.84FaSJEG-CkWuyfo69Wvhge-7jT6MxqBjK-5zzaoaDs'
+  },
+  message: 'User Logged in successfully',
+  success: true
+}
+TOKEN RECEIVED

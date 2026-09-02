@@ -1,51 +1,113 @@
-import {test} from '@playwright/test'
+// Pages/LoginPage.js
+
+import {
+  attachStepScreenshot
+} from '../utils/screenshotUtil.js';
+
 
 class LoginPage {
+
   constructor(page) {
+
     this.page = page;
 
+    // Locators
     this.usernameInput = page.locator('#user-name');
+
     this.passwordInput = page.locator('#password');
+
     this.loginButton = page.locator('#login-button');
+
     this.errorMessage = page.locator('[data-test="error"]');
+
   }
 
-  async goto() {
-    await this.page.goto('https://www.saucedemo.com/');
-  }
 
-  async login(username, password) {
+  // =====================================================
+  // ENTER USERNAME
+  // =====================================================
+
+  async enterUsername(username, testInfo) {
+
     await this.usernameInput.fill(username);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
+
+    await attachStepScreenshot(
+      this.page,
+      testInfo,
+      '01 - After Entering Username'
+    );
+
   }
+
+
+  // =====================================================
+  // ENTER PASSWORD
+  // =====================================================
+
+  async enterPassword(password, testInfo) {
+
+    await this.passwordInput.fill(password);
+
+    await attachStepScreenshot(
+      this.page,
+      testInfo,
+      '02 - After Entering Password'
+    );
+
+  }
+
+
+  // =====================================================
+  // CLICK LOGIN
+  // =====================================================
+
+  async clickLogin(testInfo) {
+
+    await this.loginButton.click();
+
+    await attachStepScreenshot(
+      this.page,
+      testInfo,
+      '03 - After Clicking Login'
+    );
+
+  }
+
+
+  // =====================================================
+  // LOGIN
+  // =====================================================
+
+  async login(username, password, testInfo) {
+
+    await this.enterUsername(
+      username,
+      testInfo
+    );
+
+    await this.enterPassword(
+      password,
+      testInfo
+    );
+
+    await this.clickLogin(
+      testInfo
+    );
+
+  }
+
+
+  // =====================================================
+  // GET ERROR MESSAGE
+  // =====================================================
 
   async getErrorMessage() {
+
     return await this.errorMessage.textContent();
+
   }
 
-  async attachScreenshot(name){
-  await test.info().attach(name,{
-    body: await this.page.screenshot(),
-    contentType:"image/png",
-  });
-  }
-
-   async gotoLoginPage(){
-    await this.page.goto('https://www.saucedemo.com/');
-    await this.attachScreenshot("01 login page opened")
-  }
-
-  async login(usernameInput,passwordInput){
-    await this.usernameInput.fill(usernameInput),
-    await this.attachScreenshot("02 After entering username ")
-
-    await this.passwordInput.fill(passwordInput),
-    await this.attachScreenshot("03 After entering password")
-
-    await this.loginButton.click(),
-    await this.attachScreenshot("04 After clicking login")
-  }
 }
- 
+
+
 export default LoginPage;
