@@ -5,9 +5,10 @@ import {
   expect
 } from '../fixtures/testSetup.js';
 
-import LoginPage from '../Pages/LoginPage.js';
-import AddToCart from '../Pages/AddToCart.js';
-import Checkout from '../Pages/Checkout.js';
+
+import LoginPage from '../pages/LoginPage.js';
+import AddToCart from '../pages/AddToCart.js';
+import Checkout from '../pages/Checkout.js';
 
 import LoginData from '../testdata/LogintestData.json';
 import CheckoutData from '../testdata/Checkout.json';
