@@ -1,6 +1,5 @@
-
 # Use official Playwright image
-FROM mcr.microsoft.com/playwright:v1.52.0-jammy
+FROM mcr.microsoft.com/playwright:v1.62.1-jammy
 
 # Create app directory
 WORKDIR /app
@@ -8,14 +7,11 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install exact dependencies
+RUN npm ci
 
-# Copy all files
+# Copy project files
 COPY . .
 
-# Install Playwright browsers
-RUN npx playwright install --with-deps
-
-# Run tests
+# Run Playwright tests
 CMD ["npx", "playwright", "test"]

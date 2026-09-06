@@ -7,7 +7,6 @@ import {
 
 import LoginPage from '../pages/LoginPage.js';
 import HomePage from '../pages/Homepage.js';
-
 import LoginData from '../testdata/LogintestData.json';
 import HomeData from '../testdata/HomePage.json';
 

@@ -7,7 +7,7 @@ import {
 import LoginPage from '../pages/LoginPage.js';
 import Logout from '../pages/Logout.js';
 
-import LogoutData from '../testdata/logout.json';
+import LogoutData from '../testdata/Logout.json';
 
 test ('TC08 - Logout Test', async ({ page }, testInfo) => {
 

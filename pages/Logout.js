@@ -3,7 +3,7 @@
 
 import {
   attachStepScreenshot
-} from '../utils/screenshotUtil.js';
+} from '../utilities/screenshotUtil.js';
 
 
 class Logout {
