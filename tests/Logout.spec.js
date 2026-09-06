@@ -9,6 +9,7 @@ import Logout from '../pages/Logout.js';
 
 import LogoutData from '../testdata/Logout.json';
 
+
 test ('TC08 - Logout Test', async ({ page }, testInfo) => {
 
   const login = new LoginPage(page);
