@@ -1,0 +1,2 @@
+REGISTER STATUS: 201
+REGISTER RESPONSE: {"statusCode":201,"data":{"_id":"6aaaf692852b90152cfe5a33","username":"ameer1789589139571","email":"ameer1789589139571@gmail.com","fullname":"AmeerHamza","createdAt":"2026-09-16T20:05:38.335Z","updatedAt":"2026-09-16T20:05:38.335Z","__v":0},"message":"User registered Successfully","success":true}
